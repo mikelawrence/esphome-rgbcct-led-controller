@@ -40,8 +40,8 @@ jobs:
       - get-release-info
     with:
       files: |
-        rgbcct-led-controller-5a-esp32-c3.factory.yaml
-        rgbcct-led-controller-10a-esp32-c3.factory.yaml
+        rgbww-led-controller-5a-esp32-c3.factory.yaml
+        rgbww-led-controller-10a-esp32-c3.factory.yaml
       esphome-version: latest
       # combined-name: fan-controller
       release-summary: ${{ needs.get-release-info.outputs.summary }}

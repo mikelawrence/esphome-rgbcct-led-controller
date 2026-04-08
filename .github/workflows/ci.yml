@@ -24,8 +24,8 @@ jobs:
       matrix:
         #### Modify below here to match your project ####
         file:
-          - rgbcct-led-controller-5a-esp32-c3
-          - rgbcct-led-controller-10a-esp32-c3
+          - rgbww-led-controller-5a-esp32-c3
+          - rgbww-led-controller-10a-esp32-c3
         #### Modify above here to match your project ####
         esphome-version:
           - stable
