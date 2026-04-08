@@ -1,0 +1,26 @@
+name: YAML lint
+
+on:
+  pull_request:
+    paths:
+      - "**.yaml"
+      - "**.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  yamllint:
+    name: 🧹 yamllint
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️ Check out configuration from GitHub
+        uses: actions/checkout@v6
+      - name: 🚀 Run yamllint
+        uses: frenck/action-yamllint@v1.5.0
+        with:
+          strict: true

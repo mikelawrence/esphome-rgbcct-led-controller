@@ -1,0 +1,9 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+"C1, C2, C3, C4, C5",0805,5,0.47uF,C307331
+J1,SAMTEC_SFMC-103-01-L-D,1,~,
+J2,"TerminalBlock_Phoenix_MPT-0,5-4-2.54_1x04_P2.54mm_Horizontal",1,Conn_01x04,
+"J3, J4, J5, J6",JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,4,Conn_01x02,C157931
+"MH1, MH2",97730606332R,2,~,
+"R1, R2, R3, R4",0805,4,61.9KΩ,C136977
+U1,TSSOP-10_3x3mm_P0.5mm,1,ADS1015,
+U2,SOT-23-6,1,REF35300QDBVR,C6643299

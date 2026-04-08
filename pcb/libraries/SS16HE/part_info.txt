@@ -1,0 +1,9 @@
+Manufacturer=onsemi
+PartNumber=SS16HE
+PartCategory=Schottky Diode
+PackageCategory=Other
+PinCount=2
+Version=6.8
+Released=2019-09-12 10:25:47
+Downloaded=2026-03-21 13:30:27
+3D=Y

@@ -1,0 +1,170 @@
+(footprint "SK6812-4020"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "D5"
+		(at 2.115 -1.61 180)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "fce0e2e9-e535-4514-825c-91c806852011")
+		(effects
+			(font
+				(size 1 0.6)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SK6812-4020"
+		(at -3 -4.3 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "19af119b-2505-4738-a183-edd6bf746274")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://cdn-shop.adafruit.com/product-files/4691/4691_SK68XX_SIDE_REV.04_EN_1_.pdf"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5e9f581e-f799-49f0-85b1-761150ac919e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "RGB LED with integrated controller, 4mm x 2mm Side LED package"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "067fcb16-cb04-4958-8cfd-86c78a7dc6e8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer" "Adafruit"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e11b64d5-1da8-4ae6-ab93-200ba147b9bf")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Part Number" "4691"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e4c289cc-91c7-45b4-bedd-c7926790490a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -2.1 -0.6)
+		(end -2.1 1.4)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f8cd51a5-af95-4b46-a0e1-ee79bef3eaa1")
+	)
+	(fp_line
+		(start -2.1 -0.6)
+		(end 1.9 -0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "efa3b34f-6389-4e72-aca5-fa692cb07e2f")
+	)
+	(fp_line
+		(start -2.1 1.4)
+		(end 1.2 1.4)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "557d1926-c779-411f-90e6-f50f308dac0f")
+	)
+	(fp_line
+		(start 1.9 0.7)
+		(end 1.2 1.4)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c1d691b8-bf48-4295-b848-d6da7e53135e")
+	)
+	(fp_line
+		(start 1.9 0.7)
+		(end 1.9 -0.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "67bcdff9-bbdd-439b-a36c-8c3d2ec2d29a")
+	)
+	(pad "1" smd rect
+		(at -1.6 0 180)
+		(size 0.75 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "5e01eba9-f5d5-41a1-8fc8-2f971e517b24")
+	)
+	(pad "2" smd rect
+		(at -0.475 0 180)
+		(size 0.6 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "bc7ac442-df06-4b36-96ea-cce1ba89fc61")
+	)
+	(pad "3" smd rect
+		(at 0.405 0 180)
+		(size 0.4 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "d57dd5b6-5422-439f-8f1c-778cf2bea034")
+	)
+	(pad "4" smd rect
+		(at 1.385 0 180)
+		(size 0.8 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "dc62f80f-2c08-4d4f-83e1-7d2b6daa8db8")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/libraries/SK6812-4020/SK6812 Side 4020 LED--3DModel-STEP-56544.STEP"
+		(offset
+			(xyz -3.5 7.5 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
+)

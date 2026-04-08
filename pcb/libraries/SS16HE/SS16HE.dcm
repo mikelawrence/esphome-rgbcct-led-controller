@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP SS16HE
+D ON Semi 60V 1A, Diode, 2-Pin SOD-323HE SS16HE
+K
+F https://www.onsemi.com/pub/Collateral/SS13HE-D.PDF
+$ENDCMP
+#
+#End Doc Library

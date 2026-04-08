@@ -1,0 +1,150 @@
+PCBNEW-LibModule-V1  2026-02-28 22:21:46
+# encoding utf-8
+Units mm
+$INDEX
+QFN-19
+$EndINDEX
+$MODULE QFN-19
+Po 0 0 0 15 69a36a7a 00000000 ~~
+Li QFN-19
+Cd QFN-19 (3mm x 5mm x 1.6mm)
+Kw Integrated Circuit
+Sc 0
+At SMD
+AR 
+Op 0 0 0
+T0 -0.125 -0.15 1.27 1.27 0 0.254 N V 21 N "IC**"
+T1 -0.125 -0.15 1.27 1.27 0 0.254 N I 21 N "QFN-19"
+DS -1.5 -2.5 1.5 -2.5 0.2 24
+DS 1.5 -2.5 1.5 2.5 0.2 24
+DS 1.5 2.5 -1.5 2.5 0.2 24
+DS -1.5 2.5 -1.5 -2.5 0.2 24
+DS -3.05 -3.8 2.8 -3.8 0.1 24
+DS 2.8 -3.8 2.8 3.5 0.1 24
+DS 2.8 3.5 -3.05 3.5 0.1 24
+DS -3.05 3.5 -3.05 -3.8 0.1 24
+DS -1.5 2.4 -1.5 2.5 0.1 21
+DS -1.5 2.5 1.5 2.5 0.1 21
+DS 1.5 2.5 1.5 2.4 0.1 21
+DS -1.5 -1.8 -1.5 -2.5 0.1 21
+DS 1.5 -1.8 1.5 -2.5 0.1 21
+DS -2 -1.6 -2 -1.6 0.1 21
+DS -2 -1.5 -2 -1.5 0.1 21
+DA -2 -1.55 -2 -1.6 1800 0.1 21
+DA -2 -1.55 -2 -1.5 1800 0.1 21
+$PAD
+Po -1.4 -1.55
+Sh "1" R 0.25 0.8 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po -1.25 -0.9
+Sh "2" R 0.25 1.1 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po -1.25 -0.25
+Sh "3" R 0.25 1.1 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po -1.55 0.4
+Sh "4" R 0.25 0.5 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po -1.55 1.25
+Sh "5" R 0.25 0.5 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po -1.55 2.1
+Sh "6" R 0.25 0.5 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 1.55 2.1
+Sh "7" R 0.25 0.5 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 1.55 1.25
+Sh "8" R 0.25 0.5 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 1.55 0.4
+Sh "9" R 0.25 0.5 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 1.25 -0.25
+Sh "10" R 0.25 1.1 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 1.25 -0.9
+Sh "11" R 0.25 1.1 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 1.4 -1.55
+Sh "12" R 0.25 0.8 0 0 900
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 1.2 -2.4
+Sh "13" R 0.2 0.8 0 0 0
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 0.6 -2.25
+Sh "14" R 0.2 1.1 0 0 0
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 0 -2.25
+Sh "15" R 0.2 1.1 0 0 0
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po -0.6 -2.25
+Sh "16" R 0.2 1.1 0 0 0
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po -1.2 -2.4
+Sh "17" R 0.2 0.8 0 0 0
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po -1 1.25
+Sh "18" R 0.6 1.95 0 0 0
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$PAD
+Po 1 1.25
+Sh "19" R 0.6 1.95 0 0 0
+At SMD N 00888000
+Ne 0 ""
+$EndPAD
+$EndMODULE QFN-19
+$EndLIBRARY

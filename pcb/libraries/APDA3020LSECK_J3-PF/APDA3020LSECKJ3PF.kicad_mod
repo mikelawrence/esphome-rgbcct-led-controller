@@ -1,0 +1,302 @@
+(footprint "APDA3020LSECKJ3PF"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "APDA3020LSECK/J3-PF-4")
+	(tags "LED")
+	(property "Reference" "D10"
+		(at -3.1 0 0)
+		(layer "F.SilkS")
+		(uuid "903bab11-20a4-43c5-b4b9-2a7170b196a8")
+		(effects
+			(font
+				(size 1 0.6)
+				(thickness 0.15)
+			)
+			(justify left)
+		)
+	)
+	(property "Value" "Red"
+		(at -0.275 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "51b4f0c2-24b8-4553-8f7f-260650259bc1")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.kingbrightusa.com/images/catalog/SPEC/APDA3020LSECK-J3-PF.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "48eb1038-42f3-4fca-bc5d-430f408b01e0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Light emitting diode, filled shape"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e2b7f463-c14c-4a5c-be77-d7ffc7301502")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Sim.Pins" "1=K 2=A"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1a69395f-c8ef-438e-93dc-4a2722a20826")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer" "Kingbright"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bccc7176-fc3d-4d81-bf41-c70a4daf68d6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Part Number" "APDA3020LSECK/J3-PF"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "488bb8cf-1288-4700-bc5f-3a97b2f487cb")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -3 -1)
+		(end -3 0.7)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cb16f07d-5115-4d9e-be75-3ad62592ad65")
+	)
+	(fp_line
+		(start -3 -1)
+		(end 1.5 -1)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2413cebb-d0dc-47e2-a095-c3e69a9314e2")
+	)
+	(fp_line
+		(start -3 0.7)
+		(end 1.5 0.7)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ac1fb028-37ff-4dc2-ac0d-c95fdbaddbde")
+	)
+	(fp_line
+		(start -1.1 -1.5)
+		(end -1.2 -1)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6daf76d8-dbc8-436e-a685-d91b7528ac44")
+	)
+	(fp_line
+		(start -1.1 -1.5)
+		(end 1.1 -1.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5951cc08-6fa8-4d7a-bf80-daa77ebe752f")
+	)
+	(fp_line
+		(start -0.70595 -1.977861)
+		(end -0.8 -1.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "58ee7d72-45f5-4fc8-bc00-eeb619676baa")
+	)
+	(fp_line
+		(start 0.7 -2)
+		(end 0.8 -1.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "45c01dfb-2f41-49b5-a242-43b7e960c59c")
+	)
+	(fp_line
+		(start 1.1 -1.5)
+		(end 1.2 -1)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "1d9c9057-d836-42c0-b56d-f5b3619be291")
+	)
+	(fp_arc
+		(start -0.70595 -1.977862)
+		(mid -0.011462 -2.527921)
+		(end 0.7 -2)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d4ef997b-f89a-4cbe-b81c-862d6ff966ed")
+	)
+	(fp_line
+		(start -4.05 -2)
+		(end 3.5 -2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b829762e-1e8c-4867-a78b-f645511f4ac6")
+	)
+	(fp_line
+		(start -4.05 2)
+		(end -4.05 -2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "723967cf-5e45-4aeb-a696-c67c80bb88e7")
+	)
+	(fp_line
+		(start 3.5 -2)
+		(end 3.5 2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "13deb198-5544-430e-b80d-264a04cfd50d")
+	)
+	(fp_line
+		(start 3.5 2)
+		(end -4.05 2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "1d5b0ff8-a013-42b1-bc01-6c77d2fa8b7d")
+	)
+	(fp_line
+		(start -1.5 -1)
+		(end 1.5 -1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a99ad52c-3202-40c0-b65c-b232a54f916b")
+	)
+	(fp_line
+		(start -1.5 1)
+		(end -1.5 -1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e59df54d-210a-4a38-b885-8fb0714c448d")
+	)
+	(fp_line
+		(start 1.5 -1)
+		(end 1.5 1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "6cbaee08-038a-41ab-a90f-ff1a3f7b1882")
+	)
+	(fp_line
+		(start 1.5 1)
+		(end -1.5 1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "d4182a65-20d0-4eed-89a5-2cb2e9fb5d8f")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -0.275 0 0)
+		(layer "F.Fab")
+		(uuid "59d8cd0b-e5be-40b4-beb8-8b623636e2b6")
+		(effects
+			(font
+				(size 1 0.6)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1.5 0 90)
+		(size 1 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "4cd73b23-0534-4049-aa2c-39f8e96e7dbf")
+	)
+	(pad "2" smd rect
+		(at 1.5 0 90)
+		(size 1 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "c117fd9c-0c1f-4428-ac62-19326b460a6c")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/libraries/APDA3020LSECK_J3-PF/APDA3020.STEP"
+		(offset
+			(xyz 0 0 1)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
+)

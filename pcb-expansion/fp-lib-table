@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "S4B-ZR")(type "KiCad")(uri "${KIPRJMOD}/libraries/S4B-ZR/S4B-ZR.pretty")(options "")(descr ""))
+)

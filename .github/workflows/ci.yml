@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - "**.yaml"
+      - ".github/workflows/ci.yml"
+  schedule:
+    # Weekly on Sunday at midnight
+    - cron: "0 0 * * 0"
+
+concurrency:
+  group: "Only one at a time"
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Building ${{ matrix.file }} / ${{ matrix.esphome-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        #### Modify below here to match your project ####
+        file:
+          - rgbcct-led-controller-5a-esp32-c3
+          - rgbcct-led-controller-10a-esp32-c3
+        #### Modify above here to match your project ####
+        esphome-version:
+          - stable
+          - dev
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+      - name: ESPHome ${{ matrix.esphome-version }}
+        uses: esphome/build-action@v7
+        with:
+          yaml-file: ${{ matrix.file }}.yaml
+          version: ${{ matrix.esphome-version }}
+      - name: ESPHome ${{ matrix.esphome-version }} Factory
+        uses: esphome/build-action@v7
+        with:
+          yaml-file: ${{ matrix.file }}.factory.yaml
+          version: ${{ matrix.esphome-version }}

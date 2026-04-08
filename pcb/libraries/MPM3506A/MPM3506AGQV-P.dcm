@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MPM3506AGQV-P
+D Switching Voltage Regulators 36V/0.6A Module Sync Step-Down Converter
+K
+F https://www.monolithicpower.com/pub/media/document/MPM3506A_r1.0.pdf
+$ENDCMP
+#
+#End Doc Library

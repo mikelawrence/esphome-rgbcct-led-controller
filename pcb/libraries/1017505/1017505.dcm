@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 1017505
+D PCB terminal block, nominal current: 32 A, rated voltage (III/2): 400 V, nominal cross section: 2.5 mm?, Number of potentials: 4, Number of rows: 1, Number of positions per row: 4, product range: TDPT 2,5/..-SP, pitch: 5.08 mm, connection method: Push-in spring connection, mounting: Wave soldering, conductor/PCB connection direction: 0 ?, color: green, Pin layout: Linear double pinning, Solder pin [P]: 3.5 mm, type of packaging: packed in cardboard
+K
+F https://www.phoenixcontact.com/en-us/products/printed-circuit-board-terminal-tdpt-25-4-sp-508-1017505?type=pdf
+$ENDCMP
+#
+#End Doc Library
