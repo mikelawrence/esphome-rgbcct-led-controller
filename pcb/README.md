@@ -1,8 +1,8 @@
 # ESPHome RGBCCT LED Controller PCB
 
 <p align="center">
-  <img src="pcb/meta/esphome-rgbcct-led-controller-top-view.png" width="48%" />
-  <img src="pcb/meta/esphome-rgbcct-led-controller-side-view.png" width="48%" />
+  <img src="meta/esphome-rgbcct-led-controller-top-view.png" width="48%" />
+  <img src="meta/esphome-rgbcct-led-controller-side-view.png" width="48%" />
 </p>
 
 The PCB is designed in [KiCad](https://www.kicad.org/). Fabrication and is tuned toward [JCLPCB](https://jlcpcb.com/). I using my [Whizoo Controleo3](https://whizoo.com/) oven to handle all but the Thru-Hole stuff which is hand soldered.
@@ -15,7 +15,7 @@ Only the 5A configuration has been tested. Short circuit on LED outputs will not
 
 ## Schematic
 <p align="center">
-    <a href="pcb/esphome-rgbcct-led-controller-schematic.pdf"><img src="pcb/meta/esphome-rgbcct-led-controller-schematic.png" width="70%"></a> <br />
+    <a href="esphome-rgbcct-led-controller-schematic.pdf"><img src="pcb/meta/esphome-rgbcct-led-controller-schematic.png" width="70%"></a> <br />
     Schematic
 </p>
 
@@ -25,7 +25,7 @@ TMP1075 (U1) cannot be populated due to a PCB error. It will burn with 24V Vin.
 
 ## Bill of Materials
 <p align="center">
-    <a href="https://htmlpreview.github.io/?https://github.com/mikelawrence/esphome-rgbcct-led-controller/blob/main/pcb/interactive-bom/index.html"><img src="pcb/meta/esphome-rgbcct-led-controller-bom.png" width="70%"></a> <br />
+    <a href="https://htmlpreview.github.io/?https://github.com/mikelawrence/esphome-rgbcct-led-controller/blob/main/pcb/interactive-bom/index.html"><img src="meta/esphome-rgbcct-led-controller-bom.png" width="70%"></a> <br />
     Interactive BOM
 </p>
 
@@ -35,4 +35,3 @@ TMP1075 (U1) cannot be populated due to a PCB error. It will burn with 24V Vin.
 * Two configurations, 5A Continuous, 10A Short Circuit and 10A Continuous and 20A Short Circuit.
 * Dimensions are 100mm X 45mm.
 * Requires oven reflow or hot air to assemble most components.
-
