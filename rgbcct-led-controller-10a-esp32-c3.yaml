@@ -103,7 +103,7 @@ light:
           name: Rainbow
           speed: 10
           width: 50
-  - platform: power_limited_rgbww
+  - platform: rgbww_power_limited
     id: rgbww_light_1
     name: "Light"
     red: output_red_int
