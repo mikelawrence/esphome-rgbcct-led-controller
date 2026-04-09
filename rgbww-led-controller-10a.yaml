@@ -105,6 +105,7 @@ light:
           width: 50
   - platform: rgbww_power_limited
     id: rgbww_light_1
+    output_id: rgbww_light_1_output
     name: "Light"
     red: output_red_int
     green: output_green_int
@@ -116,7 +117,27 @@ light:
     constant_brightness: false
     color_interlock: false
     restore_mode: RESTORE_DEFAULT_OFF
-    max_power: 0.7 # Cap at 70% of total system power
+    gamma_correct: 1.0
+    # Power limiting
+    max_power: 0.6              # Cap at 60% of total system power
+
+number:
+  - platform: template
+    name: "Max Power"
+    id: max_power
+    icon: "mdi:flash-alert"
+    min_value: 1
+    max_value: 100
+    step: 1
+    unit_of_measurement: "%"
+    entity_category: CONFIG
+    optimistic: true
+    restore_value: true
+    initial_value: 60
+    set_action:
+      - rgbww_power_limited.set_max_power:
+          id: rgbww_light_1_output
+          max_power: !lambda "return x / 100.0f;"
 
 output:
   - platform: gpio
@@ -160,31 +181,37 @@ output:
   - platform: ledc
     pin: GPIO20
     id: fan_pwm
-    frequency: 1000Hz # Standard for 4-pin PWM fans
+    # channel: 0
+    frequency: 1500Hz # Standard for 4-pin PWM fans
   - platform: ledc
     pin: GPIO4
     id: output_red
-    frequency: 1000Hz
+    # channel: 2
+    frequency: 1500Hz
     phase_angle: 0
   - platform: ledc
     pin: GPIO10
     id: output_green
-    frequency: 1000Hz
+    # channel: 3
+    frequency: 1500Hz
     phase_angle: 20
   - platform: ledc
     pin: GPIO5
     id: output_blue
-    frequency: 1000Hz
+    # channel: 4
+    frequency: 1500Hz
     phase_angle: 40
   - platform: ledc
     pin: GPIO6
     id: output_ww
-    frequency: 1000Hz
+    # channel: 5
+    frequency: 1500Hz
     phase_angle: 60
   - platform: ledc
     pin: GPIO3
     id: output_cw
-    frequency: 1000Hz
+    # channel: 5
+    frequency: 1500Hz
     phase_angle: 80
 
 sensor:
@@ -200,26 +227,39 @@ sensor:
     filters:
       - multiply: 0.5
       - or:
-          - throttle: 60s
-          - delta: 50
+        - throttle: 60s
+        - delta: 50
   # This sensor includes everything on this board
   - platform: ina2xx_i2c
     id: usb_c_power_sensor
     model: INA238
     shunt_resistance: 0.004ohm
     max_current: 20A
-    adc_range: 0 # ±163.84 mV
-    update_interval: 60s
+    adc_range: 0  # ±163.84 mV
+    # adc_range: 1  # ±40.96 mV 
+    update_interval: 1s
     reset_on_boot: false
     bus_voltage:
       name: "Voltage"
       accuracy_decimals: 2
+      filters:
+        - or:
+          - throttle: 60s
+          - delta: 1.0
     power:
       name: "Power"
       accuracy_decimals: 2
+      filters:
+        - or:
+          - throttle: 60s
+          - delta: 1.0
     current:
       name: "Current"
       accuracy_decimals: 3
+      filters:
+        - or:
+          - throttle: 60s
+          - delta: 0.5
   - platform: sht3xd
     address: 0x44
     update_interval: 60s
@@ -229,28 +269,28 @@ sensor:
       name: "Humidity"
   - platform: ads1115
     id: t0_voltage
-    multiplexer: "A0_GND"
+    multiplexer: 'A0_GND'
     gain: 2.048
     update_interval: never
     filters:
       - filter_out: 2.047
   - platform: ads1115
     id: t1_voltage
-    multiplexer: "A1_GND"
+    multiplexer: 'A1_GND'
     gain: 2.048
     update_interval: never
     filters:
       - filter_out: 2.047
   - platform: ads1115
     id: t2_voltage
-    multiplexer: "A2_GND"
+    multiplexer: 'A2_GND'
     gain: 2.048
     update_interval: never
     filters:
       - filter_out: 2.047
   - platform: ads1115
     id: t3_voltage
-    multiplexer: "A3_GND"
+    multiplexer: 'A3_GND'
     gain: 2.048
     update_interval: never
     filters:
@@ -284,8 +324,8 @@ sensor:
       reference_resistance: 10kOhm
     filters:
       - or:
-          - throttle: 60s
-          - delta: 1
+        - throttle: 60s
+        - delta: 1
   - platform: ntc
     name: "LED Strip 2 Temperature"
     sensor: t1_resistance
@@ -295,8 +335,8 @@ sensor:
       reference_resistance: 10kOhm
     filters:
       - or:
-          - throttle: 60s
-          - delta: 1
+        - throttle: 60s
+        - delta: 1
   - platform: ntc
     name: "LED Strip 3 Temperature"
     sensor: t2_resistance
@@ -306,8 +346,8 @@ sensor:
       reference_resistance: 10kOhm
     filters:
       - or:
-          - throttle: 60s
-          - delta: 1
+        - throttle: 60s
+        - delta: 1
   - platform: ntc
     name: "LED Strip 4 Temperature"
     sensor: t3_resistance
@@ -317,8 +357,8 @@ sensor:
       reference_resistance: 10kOhm
     filters:
       - or:
-          - throttle: 60s
-          - delta: 1
+        - throttle: 60s
+        - delta: 1
   - platform: template
     name: "LED Red"
     id: red
