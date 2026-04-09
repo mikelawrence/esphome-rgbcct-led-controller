@@ -119,7 +119,7 @@ light:
     restore_mode: RESTORE_DEFAULT_OFF
     gamma_correct: 1.0
     # Power limiting
-    max_power: 0.6              # Cap at 60% of total system power
+    max_power: 0.6 # Cap at 60% of total system power
 
 number:
   - platform: template
@@ -227,16 +227,16 @@ sensor:
     filters:
       - multiply: 0.5
       - or:
-        - throttle: 60s
-        - delta: 50
+          - throttle: 60s
+          - delta: 50
   # This sensor includes everything on this board
   - platform: ina2xx_i2c
     id: usb_c_power_sensor
     model: INA238
     shunt_resistance: 0.008ohm
     max_current: 10A
-    adc_range: 0  # ±163.84 mV
-    # adc_range: 1  # ±40.96 mV 
+    adc_range: 0 # ±163.84 mV
+    # adc_range: 1  # ±40.96 mV
     update_interval: 1s
     reset_on_boot: false
     bus_voltage:
@@ -244,22 +244,22 @@ sensor:
       accuracy_decimals: 2
       filters:
         - or:
-          - throttle: 60s
-          - delta: 1.0
+            - throttle: 60s
+            - delta: 1.0
     power:
       name: "Power"
       accuracy_decimals: 2
       filters:
         - or:
-          - throttle: 60s
-          - delta: 1.0
+            - throttle: 60s
+            - delta: 1.0
     current:
       name: "Current"
       accuracy_decimals: 3
       filters:
         - or:
-          - throttle: 60s
-          - delta: 0.5
+            - throttle: 60s
+            - delta: 0.5
   - platform: sht3xd
     address: 0x44
     update_interval: 60s
@@ -269,28 +269,28 @@ sensor:
       name: "Humidity"
   - platform: ads1115
     id: t0_voltage
-    multiplexer: 'A0_GND'
+    multiplexer: "A0_GND"
     gain: 2.048
     update_interval: never
     filters:
       - filter_out: 2.047
   - platform: ads1115
     id: t1_voltage
-    multiplexer: 'A1_GND'
+    multiplexer: "A1_GND"
     gain: 2.048
     update_interval: never
     filters:
       - filter_out: 2.047
   - platform: ads1115
     id: t2_voltage
-    multiplexer: 'A2_GND'
+    multiplexer: "A2_GND"
     gain: 2.048
     update_interval: never
     filters:
       - filter_out: 2.047
   - platform: ads1115
     id: t3_voltage
-    multiplexer: 'A3_GND'
+    multiplexer: "A3_GND"
     gain: 2.048
     update_interval: never
     filters:
@@ -324,8 +324,8 @@ sensor:
       reference_resistance: 10kOhm
     filters:
       - or:
-        - throttle: 60s
-        - delta: 1
+          - throttle: 60s
+          - delta: 1
   - platform: ntc
     name: "LED Strip 2 Temperature"
     sensor: t1_resistance
@@ -335,8 +335,8 @@ sensor:
       reference_resistance: 10kOhm
     filters:
       - or:
-        - throttle: 60s
-        - delta: 1
+          - throttle: 60s
+          - delta: 1
   - platform: ntc
     name: "LED Strip 3 Temperature"
     sensor: t2_resistance
@@ -346,8 +346,8 @@ sensor:
       reference_resistance: 10kOhm
     filters:
       - or:
-        - throttle: 60s
-        - delta: 1
+          - throttle: 60s
+          - delta: 1
   - platform: ntc
     name: "LED Strip 4 Temperature"
     sensor: t3_resistance
@@ -357,8 +357,8 @@ sensor:
       reference_resistance: 10kOhm
     filters:
       - or:
-        - throttle: 60s
-        - delta: 1
+          - throttle: 60s
+          - delta: 1
   - platform: template
     name: "LED Red"
     id: red
