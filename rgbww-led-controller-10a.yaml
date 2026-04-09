@@ -54,7 +54,7 @@ logger:
   logs:
     pulse_counter: ERROR
     ads1115.sensor: ERROR
-    ina2xx_i2c: ERROR
+    ina2xx: ERROR
 
 ads1115:
   address: 0x48
