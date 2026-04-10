@@ -23,7 +23,7 @@ external_components:
   - source:
       type: git
       url: https://github.com/mikelawrence/esphome-components
-    components: [rgbww_power_limited]
+    components: [rgbww_power_limited, esp32_rmt_pwm]
 
 # API is a requirement of the dashboard import
 # Grab a key from https://esphome.io/components/api.html
@@ -59,6 +59,9 @@ logger:
 ads1115:
   address: 0x48
   continuous_mode: false
+
+debug:
+  update_interval: 60s
 
 i2c:
   sda: GPIO1
@@ -97,6 +100,7 @@ light:
     rgb_order: RGB
     pin: GPIO2
     num_leds: 1
+    rmt_symbols: 48
     chipset: ws2812
     effects:
       - addressable_rainbow:
@@ -178,41 +182,36 @@ output:
       - lambda: !lambda |-
           id(output_cw).set_level(state);
           id(cw).publish_state(state * 100.0f);
-  - platform: ledc
+  - platform: esp32_rmt_pwm
     pin: GPIO20
     id: fan_pwm
-    # channel: 0
-    frequency: 1500Hz # Standard for 4-pin PWM fans
+    rmt_symbols: 48
+    frequency: 25000Hz # Standard for 4-pin PWM fans
   - platform: ledc
     pin: GPIO4
     id: output_red
-    # channel: 2
-    frequency: 1500Hz
-    phase_angle: 0
+    frequency: 300Hz # More than approximately 1500Hz will not work well
+    phase_angle: 0°
   - platform: ledc
     pin: GPIO10
     id: output_green
-    # channel: 3
-    frequency: 1500Hz
-    phase_angle: 20
+    frequency: 300Hz
+    phase_angle: 72°
   - platform: ledc
     pin: GPIO5
     id: output_blue
-    # channel: 4
-    frequency: 1500Hz
-    phase_angle: 40
+    frequency: 300Hz
+    phase_angle: 144°
   - platform: ledc
     pin: GPIO6
     id: output_ww
-    # channel: 5
-    frequency: 1500Hz
-    phase_angle: 60
+    frequency: 300Hz
+    phase_angle: 216°
   - platform: ledc
     pin: GPIO3
     id: output_cw
-    # channel: 5
-    frequency: 1500Hz
-    phase_angle: 80
+    frequency: 300Hz
+    phase_angle: 288°
 
 sensor:
   - platform: pulse_counter
@@ -233,8 +232,8 @@ sensor:
   - platform: ina2xx_i2c
     id: usb_c_power_sensor
     model: INA238
-    shunt_resistance: 0.004ohm
-    max_current: 20A
+    shunt_resistance: 0.008ohm
+    max_current: 10A
     adc_range: 0 # ±163.84 mV
     # adc_range: 1  # ±40.96 mV
     update_interval: 1s
@@ -404,3 +403,25 @@ sensor:
     disabled_by_default: true
     filters:
       - throttle: 1s
+  - platform: debug
+    free:
+      disabled_by_default: true
+      name: "Heap Free"
+    block:
+      disabled_by_default: true
+      name: "Heap Max Block"
+    min_free:
+      disabled_by_default: true
+      name: "Heap Min Free"
+    fragmentation:
+      disabled_by_default: true
+      name: "Heap Fragmentation"
+    loop_time:
+      disabled_by_default: true
+      name: "Loop Time"
+
+text_sensor:
+  - platform: debug
+    reset_reason:
+      disabled_by_default: true
+      name: "Reset Reason"
