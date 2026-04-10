@@ -33,8 +33,16 @@ api:
 
 # OTA is required for Over-the-Air updating
 ota:
+  - platform: web_server
   - platform: esphome
     # password: !secret ota_password
+
+web_server:
+  port: 80
+  version: 3
+  # auth:
+  #   username: !secret web_server_username
+  #   password: !secret web_server_password
 
 # WiFi is required
 wifi:
@@ -244,7 +252,7 @@ sensor:
       filters:
         - or:
             - throttle: 60s
-            - delta: 1.0
+            - delta: 0.5
     power:
       name: "Power"
       accuracy_decimals: 2
@@ -273,6 +281,7 @@ sensor:
     update_interval: never
     filters:
       - filter_out: 2.047
+      - throttle_average: 60s
   - platform: ads1115
     id: t1_voltage
     multiplexer: "A1_GND"
@@ -280,6 +289,7 @@ sensor:
     update_interval: never
     filters:
       - filter_out: 2.047
+      - throttle_average: 60s
   - platform: ads1115
     id: t2_voltage
     multiplexer: "A2_GND"
@@ -287,6 +297,7 @@ sensor:
     update_interval: never
     filters:
       - filter_out: 2.047
+      - throttle_average: 60s
   - platform: ads1115
     id: t3_voltage
     multiplexer: "A3_GND"
@@ -294,6 +305,7 @@ sensor:
     update_interval: never
     filters:
       - filter_out: 2.047
+      - throttle_average: 60s
   - platform: resistance
     id: t0_resistance
     sensor: t0_voltage
@@ -321,10 +333,6 @@ sensor:
       b_constant: 3950
       reference_temperature: 25°C
       reference_resistance: 10kOhm
-    filters:
-      - or:
-          - throttle: 60s
-          - delta: 1
   - platform: ntc
     name: "LED Strip 2 Temperature"
     sensor: t1_resistance
@@ -332,10 +340,6 @@ sensor:
       b_constant: 3950
       reference_temperature: 25°C
       reference_resistance: 10kOhm
-    filters:
-      - or:
-          - throttle: 60s
-          - delta: 1
   - platform: ntc
     name: "LED Strip 3 Temperature"
     sensor: t2_resistance
@@ -343,10 +347,6 @@ sensor:
       b_constant: 3950
       reference_temperature: 25°C
       reference_resistance: 10kOhm
-    filters:
-      - or:
-          - throttle: 60s
-          - delta: 1
   - platform: ntc
     name: "LED Strip 4 Temperature"
     sensor: t3_resistance
@@ -354,10 +354,6 @@ sensor:
       b_constant: 3950
       reference_temperature: 25°C
       reference_resistance: 10kOhm
-    filters:
-      - or:
-          - throttle: 60s
-          - delta: 1
   - platform: template
     name: "LED Red"
     id: red
