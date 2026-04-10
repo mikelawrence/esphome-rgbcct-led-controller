@@ -19,6 +19,7 @@ http_request:
 
 dashboard_import:
   package_import_url: github://mikelawrence/esphome-rgbcct-led-controller/rgbww-led-controller-10a.yaml@main
+  import_full_config: true
 
 wifi:
 
