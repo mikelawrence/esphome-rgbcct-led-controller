@@ -27,31 +27,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Update version
-      #   run: |
-      #     sed -i 's/config_version:.*$/config_version: ${{ steps.calendar-version.outputs.new-version }}/g' ./common/common.yaml
-      #     echo "{ \"version\": \"${{ steps.calendar-version.outputs.new-version }}\" }" > version.json
-
-      # - name: echo version changes
-      #   run: |
-      #     echo "$(cat ./version.json)"
-      #     echo "$(cat ./common/common.yaml)"
-
-      # - name: Commit version changes
-      #   uses: stefanzweifel/git-auto-commit-action@v7
-      #   with:
-      #     commit_message: "Update Version automated commit"
-
-      # - name: Update version
-      #   uses: fjogeleit/yaml-update-action@v0.16.1
-      #   with:
-      #     valueFile: 'version.json'
-      #     propertyPath: 'version'
-      #     value: ${{ steps.calendar-version.outputs.new-version }}
-      #     commitChange: true
-      #     message: "Update version"
-      #     branch: main
-
       - name: Push release tag
         uses: thejeff77/action-push-tag@v1.0.0
         with:

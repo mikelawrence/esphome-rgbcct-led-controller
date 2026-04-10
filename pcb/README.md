@@ -11,7 +11,7 @@ The PCB is designed in [KiCad](https://www.kicad.org/). Fabrication and is tuned
 
 ## Testing Notes
 
-Only the 5A configuration has been tested. Short circuit on LED outputs will not damage the board but the red LED will not light up. This type of short circuits will recover automatically recover when removed. Short circuits on the fan connector will cause the red LED to light up and. Short circuits of this type are latching and require power-cycling to release. Over-voltage and Under-Voltage Lo ck Out work fine.
+Only the 5A configuration has been tested. Short circuit on LED outputs will not damage the board but the red LED will not light up. This type of short circuits will recover automatically recover when removed. Short circuits on the fan connector will shut off power to everything and cause the red LED to light up. Short circuits of this type are latching and require power-cycling to release. Over-voltage and Under-Voltage Lock Out work fine. The 4-Pin fan connector supports fans but the PWM signal is 1.5kHz well below the recommended 25kHz. There seems to be an issue with the ledc component the prevents different pwm frequencies when using 6 ledc channels. 1.5kHz work well with Noctua fans.
 
 ## Schematic
 <p align="center">
