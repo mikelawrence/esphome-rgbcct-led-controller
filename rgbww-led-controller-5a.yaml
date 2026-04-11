@@ -17,7 +17,7 @@ esphome:
 esp32:
   variant: ESP32C3
   framework:
-    type: esp-idf
+    type: esp-idfs
 
 external_components:
   - source:
