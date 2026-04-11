@@ -1,6 +1,6 @@
 substitutions:
   name: "rgbww-led-controller-10a"
-  friendly_name: "RGBWW LED Controller 10A"
+  friendly_name: "RGBWW LED Controller 10 Amp"
 
 esphome:
   name: ${name}
