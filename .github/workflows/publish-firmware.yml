@@ -47,19 +47,26 @@ jobs:
       release-version: ${{ needs.get-release-info.outputs.version }}
 
   rewind-pre-release:
-    name: Rewind Pre-Release on Build FirmwareFailure
+    name: Rewind Pre-Release on Build Firmware Failure
     needs: build-firmware
     runs-on: ubuntu-latest
     if: failure()
     permissions:
       contents: write
+
     steps:
-      - name: Delete Tag and Release
-        run: gh release delete "$TAG" --cleanup-tag --yes
+      - uses: ClementTsang/delete-tag-and-release@v0.3.1
+        with:
+          delete_release: true # default: false
+          tag_name: ${{ needs.build-firmware.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ needs.build-firmware.outputs.version }}
-          REPO: ${{ github.repository }}
+      # - name: Delete Tag and Release
+      #   run: gh release delete "$TAG" --cleanup-tag --yes
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     TAG: ${{ needs.build-firmware.outputs.version }}
+      #     REPO: ${{ github.repository }}
 
   upload-firmware:
     name: Upload Firmware
