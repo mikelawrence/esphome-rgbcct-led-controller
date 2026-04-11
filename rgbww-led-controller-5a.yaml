@@ -39,7 +39,7 @@ ota:
   - platform: esphome
     # password: !secret ota_password
 
-# Web Server 
+# Web Server
 web_server:
   port: 80
   version: 3
