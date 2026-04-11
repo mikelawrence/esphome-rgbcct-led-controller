@@ -1,10 +1,7 @@
 name: CI
 
 on:
-  push:
-    paths:
-      - "**.yaml"
-      - ".github/workflows/ci.yml"
+  pull_request:
   schedule:
     # Weekly on Sunday at midnight
     - cron: "0 0 * * 0"
