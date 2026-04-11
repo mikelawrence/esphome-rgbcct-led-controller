@@ -1,6 +1,6 @@
 substitutions:
   name: "rgbww-led-controller-10a"
-  friendly_name: "RGBWW LED Controller 10A"
+  friendly_name: "RGBWW LED Controller 10 Amp"
 
 esphome:
   name: ${name}
@@ -32,11 +32,14 @@ api:
 #     key:
 
 # OTA is required for Over-the-Air updating
+# If you enable web_server OTA, you should also enable authentication on the web server
+#   otherwise anybody on your network could update your firmware
 ota:
-  - platform: web_server
+  # - platform: web_server
   - platform: esphome
     # password: !secret ota_password
 
+# Web Server
 web_server:
   port: 80
   version: 3
