@@ -14,6 +14,7 @@ The PCB is designed in [KiCad](https://www.kicad.org/). Fabrication and is tuned
 Only the 5A configuration has been tested. Short circuit on LED outputs will not damage the board but the red LED will not light up. This type of short circuits will recover automatically recover when removed. Short circuits on the fan connector will shut off power to everything and cause the red LED to light up. Short circuits of this type are latching and require power-cycling to release. Over-voltage and Under-Voltage Lock Out work fine. The 4-Pin fan connector supports fans but the PWM signal is 1.5kHz well below the recommended 25kHz. There seems to be an issue with the ledc component the prevents different pwm frequencies when using 6 ledc channels. 1.5kHz work well with Noctua fans.
 
 ## Schematic
+
 <p align="center">
     <a href="esphome-rgbcct-led-controller-schematic.pdf"><img src="pcb/meta/esphome-rgbcct-led-controller-schematic.png" width="70%"></a> <br />
     Schematic
@@ -24,6 +25,7 @@ Only the 5A configuration has been tested. Short circuit on LED outputs will not
 TMP1075 (U1) cannot be populated due to a PCB error. It will burn with 24V Vin.
 
 ## Bill of Materials
+
 <p align="center">
     <a href="https://htmlpreview.github.io/?https://github.com/mikelawrence/esphome-rgbcct-led-controller/blob/main/pcb/interactive-bom/index.html"><img src="meta/esphome-rgbcct-led-controller-bom.png" width="70%"></a> <br />
     Interactive BOM
@@ -31,7 +33,7 @@ TMP1075 (U1) cannot be populated due to a PCB error. It will burn with 24V Vin.
 
 ## PCB Info
 
-* 6 layers with many vias to support high currents. vias should be filled to improve thermals.
+* 6 layers with many vias to support high currents. Vias should be filled to improve thermals.
 * Two configurations, 5A Continuous, 10A Short Circuit and 10A Continuous and 20A Short Circuit.
 * Dimensions are 100mm X 45mm.
 * Requires oven reflow or hot air to assemble most components.

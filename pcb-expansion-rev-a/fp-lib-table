@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "S2B_XH_A")(type "KiCad")(uri "${KIPRJMOD}/libraries/S2B_XH_A")(options "")(descr ""))
+)
