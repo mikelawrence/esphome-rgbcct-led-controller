@@ -45,10 +45,8 @@ View the [README](pcb-expansion/README.md) for more information about this PCB.
 ## Temperature Expansion PCBs
 
 <p align="center">
-    <a href="pcb-expansion/README.md"><img src="pcb-expansion-rev-a/meta/esphome-rgbcct-led-controller-expansion-front-view.png" width="48%"></a> <br />
-    Rev A
-    <a href="pcb-expansion/README.md"><img src="pcb-expansion-rev-b/meta/esphome-rgbcct-led-controller-expansion-front-view.png" width="48%"></a> <br />
-    Rev B
+    <a href="pcb-expansion-rev-a/README.md"><img src="pcb-expansion-rev-a/meta/esphome-rgbcct-led-controller-expansion-front-view.png" width="48%"></a>
+    <a href="pcb-expansion-rev-b/README.md"><img src="pcb-expansion-rev-b/meta/esphome-rgbcct-led-controller-expansion-front-view.png" width="48%"></a>
 </p>
 
 View the [Rev A README](pcb-expansion-rev-a/README.md) or [Rev B README](pcb-expansion-rev-b/README.md) for more information.
