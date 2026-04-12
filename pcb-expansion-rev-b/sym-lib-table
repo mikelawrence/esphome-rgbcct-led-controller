@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "S2B-XH-A")(type "KiCad")(uri "${KIPRJMOD}/libraries/S2B_XH_A/S2B-XH-A.kicad_sym")(options "")(descr ""))
+)

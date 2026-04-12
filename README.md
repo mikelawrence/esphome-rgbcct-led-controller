@@ -1,7 +1,7 @@
 # ESPHome RGBCCT LED Controller
 
 <p align="center">
-  <a href="pcb/README.md"><img src="pcb-expansion/meta/esphome-rgbcct-led-controller-with-expansion.png" width="60%"></a>
+  <a href="pcb/README.md"><img src="pcb-expansion-rev-a/meta/esphome-rgbcct-led-controller-with-expansion.png" width="60%"></a>
 </p>
 
 This project evolved from the need to support LED strips for growing African Violets. It is surprising how much light plants need and how little light LED strip actually put out. My original approach was three strips composed of Cool White (CW) and Warm White LEDs (WW). But it wasn't until I purchased a Photosynthetically Active Radiation (PAR) meter to measure the Photosynthetic Photon Flux Density (PPFD, units µmol/m²/s) just how un-bright my setup was. These units are interesting. The first part, µmol, is a number, specifically one-millionth of a mole, or 6.022 x 10²³ / 1,000,000 or 6.022 x 10¹⁷. The second part is an area, 1 meter squared. And finally time in seconds. When put together it is basically the number of photons striking a one meter squared area per second. Most measurements of light intensity, like lux, lumens, or luminance, are based on human perception are not really good for plants so PAR/PPFD was developed in the 1970s by Dr. Keith McCree. When I measured the light output of my setup with my shiny new PAR meter I got 20PPFD with my original setup of three strips of CW and WW LEDs between 60 and 200PPFD. There is different and sometimes conflicting information on the Internet but the range I found for African Violets is somewhere between 60 and 200PPFD. So my setup was three times less than minimum of 60PPFD.
@@ -42,14 +42,16 @@ This LED controller supports the following:
 
 View the [README](pcb-expansion/README.md) for more information about this PCB.
 
-## Temperature Expansion PCB
+## Temperature Expansion PCBs
 
 <p align="center">
-    <a href="pcb-expansion/README.md"><img src="pcb-expansion/meta/esphome-rgbcct-led-controller-expansion-front-view.png" width="70%"></a> <br />
-    Schematic
+    <a href="pcb-expansion/README.md"><img src="pcb-expansion-rev-a/meta/esphome-rgbcct-led-controller-expansion-front-view.png" width="48%"></a> <br />
+    Rev A
+    <a href="pcb-expansion/README.md"><img src="pcb-expansion-rev-b/meta/esphome-rgbcct-led-controller-expansion-front-view.png" width="48%"></a> <br />
+    Rev B
 </p>
 
-View the [README](pcb-expansion/README.md) for more information about this PCB.
+View the [Rev A README](pcb-expansion-rev-a/README.md) or [Rev B README](pcb-expansion-rev-b/README.md) for more information.
 
 ## Configuration
 
