@@ -16,7 +16,7 @@ Only the 5A configuration has been tested. Short circuit on LED outputs will not
 ## Schematic
 
 <p align="center">
-    <a href="esphome-rgbcct-led-controller-schematic.pdf"><img src="pcb/meta/esphome-rgbcct-led-controller-schematic.png" width="70%"></a> <br />
+    <a href="esphome-rgbcct-led-controller-schematic.pdf"><img src="meta/esphome-rgbcct-led-controller-schematic.png" width="70%"></a> <br />
     Schematic
 </p>
 
