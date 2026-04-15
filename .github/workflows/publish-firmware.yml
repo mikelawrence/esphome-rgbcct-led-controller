@@ -36,7 +36,7 @@ jobs:
   build-firmware:
     name: Build Firmware
     needs: get-release-info
-    uses: esphome/workflows/.github/workflows/build.yml@2025.10.0
+    uses: esphome/workflows/.github/workflows/build.yml@2026.4.0
     with:
       files: |
         rgbww-led-controller-5a.factory.yaml
