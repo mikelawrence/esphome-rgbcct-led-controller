@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows:
       - Create Release
-    types: [ completed ]
+    types: [completed]
   workflow_dispatch:
 
 permissions:

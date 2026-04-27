@@ -23,7 +23,7 @@ external_components:
   - source:
       type: git
       url: https://github.com/mikelawrence/esphome-components
-    components: [ rgbww_power_limited, esp32_rmt_pwm ]
+    components: [rgbww_power_limited, esp32_rmt_pwm]
 
 # API is a requirement of the dashboard import
 # Grab a key from https://esphome.io/components/api.html
@@ -294,6 +294,7 @@ sensor:
           - delta: 0.5
   - platform: total_daily_energy
     name: "Energy"
+    power_id: power_internal
     unit_of_measurement: Wh
     accuracy_decimals: 3
     icon: mdi:lightning-bolt
