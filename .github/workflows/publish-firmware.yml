@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows:
       - Create Release
-    types: [completed]
+    types: [ completed ]
   workflow_dispatch:
 
 permissions:
@@ -57,16 +57,10 @@ jobs:
     steps:
       - uses: ClementTsang/delete-tag-and-release@v0.3.1
         with:
-          delete_release: true # default: false
+          delete_release: true
           tag_name: ${{ needs.build-firmware.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Delete Tag and Release
-      #   run: gh release delete "$TAG" --cleanup-tag --yes
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     TAG: ${{ needs.build-firmware.outputs.version }}
-      #     REPO: ${{ github.repository }}
 
   upload-firmware:
     name: Upload Firmware
@@ -77,23 +71,23 @@ jobs:
 
   promote-pre-release:
     name: Promote Pre-Release to Release
-    needs: 
+    needs:
       - build-firmware
       - upload-firmware
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-    - name: Get Release ID
-      id: get_release
-      uses: joutvhu/get-release@v1
-      with:
-        tag_name: ${{ needs.build-firmware.outputs.version }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Promote Pre-Release to Release
-      uses: irongut/EditRelease@v1.2.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        id: ${{ steps.get_release.outputs.id }}
-        prerelease: false
+      - name: Get Release ID
+        id: get_release
+        uses: joutvhu/get-release@v1
+        with:
+          tag_name: ${{ needs.build-firmware.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Promote Pre-Release to Release
+        uses: irongut/EditRelease@v1.2.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          id: ${{ steps.get_release.outputs.id }}
+          prerelease: false
