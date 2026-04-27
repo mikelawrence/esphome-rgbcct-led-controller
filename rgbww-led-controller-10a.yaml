@@ -28,6 +28,7 @@ external_components:
 # API is a requirement of the dashboard import
 # Grab a key from https://esphome.io/components/api.html
 api:
+
 #   encryption:
 #     key:
 
@@ -47,8 +48,9 @@ web_server:
   #   username: !secret web_server_username
   #   password: !secret web_server_password
 
-# WiFi is required
+  # WiFi is required
 wifi:
+
 #   ssid: !secret wifi_ssid
 #   password: !secret wifi_password
 #   use_address: xxx.xxx.xxx.xxx
@@ -133,8 +135,8 @@ light:
     color_interlock: false
     restore_mode: RESTORE_DEFAULT_OFF
     gamma_correct: 1.0
-    # Power limiting
-    max_power: 0.6 # Cap at 60% of total system power
+    # Power limiting, Cap at 60% of total system power for this light
+    max_power: 0.6
 
 number:
   - platform: template
@@ -197,11 +199,12 @@ output:
     pin: GPIO20
     id: fan_pwm
     rmt_symbols: 48
-    frequency: 25000Hz # Standard for 4-pin PWM fans
+    # Standard for 4-pin PWM fans
+    frequency: 25000Hz
   - platform: ledc
     pin: GPIO4
     id: output_red
-    frequency: 300Hz # More than approximately 1500Hz will not work well
+    frequency: 300Hz
     phase_angle: 0°
   - platform: ledc
     pin: GPIO10
@@ -245,31 +248,63 @@ sensor:
     model: INA238
     shunt_resistance: 0.008ohm
     max_current: 10A
-    adc_range: 0 # ±163.84 mV
-    # adc_range: 1  # ±40.96 mV
+    adc_range: 0
     update_interval: 1s
-    reset_on_boot: false
     bus_voltage:
-      name: "Voltage"
+      name: "Voltage Int"
+      id: voltage_int
+      internal: true
       accuracy_decimals: 2
-      filters:
-        - or:
-            - throttle: 60s
-            - delta: 0.5
-    power:
-      name: "Power"
-      accuracy_decimals: 2
-      filters:
-        - or:
-            - throttle: 60s
-            - delta: 1.0
     current:
-      name: "Current"
+      name: "Current Int"
+      id: current_int
+      internal: true
       accuracy_decimals: 3
-      filters:
-        - or:
-            - throttle: 60s
-            - delta: 0.5
+    power:
+      name: "Power Int"
+      id: power_int
+      internal: true
+      accuracy_decimals: 3
+  - platform: copy
+    name: "Voltage"
+    source_id: voltage_int
+    accuracy_decimals: 2
+    unit_of_measurement: "V"
+    icon: mdi:sine-wave
+    filters:
+      - or:
+          - throttle: 60s
+          - delta: 0.5
+  - platform: copy
+    name: "Current"
+    source_id: current_int
+    accuracy_decimals: 3
+    unit_of_measurement: "A"
+    icon: mdi:current-ac
+    filters:
+      - or:
+          - throttle: 60s
+          - delta: 0.5
+  - platform: copy
+    name: "Power"
+    source_id: power_int
+    accuracy_decimals: 3
+    unit_of_measurement: "W"
+    icon: mdi:flash
+    filters:
+      - or:
+          - throttle: 60s
+          - delta: 0.5
+  - platform: total_daily_energy
+    name: "Energy"
+    power_id: power_int
+    unit_of_measurement: Wh
+    accuracy_decimals: 3
+    icon: mdi:lightning-bolt
+    filters:
+      - or:
+          - throttle: 60s
+          - delta: 0.5
   - platform: sht3xd
     address: 0x44
     update_interval: 60s

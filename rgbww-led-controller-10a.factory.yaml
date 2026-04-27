@@ -5,7 +5,8 @@ packages:
 esphome:
   project:
     name: Mike Lawrence.RGBWW LED Controller 10 Amp
-    version: dev # This will be replaced by the github workflows with the `release` version
+    # This will be replaced by the github workflows with the `release` version
+    version: dev
 
 ota:
   - platform: http_request
