@@ -250,26 +250,53 @@ sensor:
     update_interval: 1s
     reset_on_boot: false
     bus_voltage:
-      name: "Voltage"
+      id: voltage_int
       accuracy_decimals: 2
-      filters:
-        - or:
-            - throttle: 60s
-            - delta: 0.5
-    power:
-      name: "Power"
-      accuracy_decimals: 2
-      filters:
-        - or:
-            - throttle: 60s
-            - delta: 1.0
     current:
-      name: "Current"
+      id: current_int
       accuracy_decimals: 3
-      filters:
-        - or:
-            - throttle: 60s
-            - delta: 0.5
+    power:
+      id: power_int
+      accuracy_decimals: 3
+  - platform: copy
+    name: "Voltage"
+    accuracy_decimals: 2
+    unit_of_measurement: "V"
+    icon: mdi:sine-wave
+    entity_id: voltage_int
+    filters:
+      - or:
+          - throttle: 60s
+          - delta: 0.5
+  - platform: copy
+    name: "Current"
+    accuracy_decimals: 3
+    unit_of_measurement: "A"
+    icon: mdi:current-ac
+    entity_id: current_int
+    filters:
+      - or:
+          - throttle: 60s
+          - delta: 0.5
+  - platform: copy
+    name: "Power"
+    accuracy_decimals: 3
+    unit_of_measurement: "W"
+    icon: mdi:flash
+    entity_id: power_int
+    filters:
+      - or:
+          - throttle: 60s
+          - delta: 0.5
+  - platform: total_daily_energy
+    name: "Energy"
+    unit_of_measurement: Wh
+    accuracy_decimals: 3
+    icon: mdi:lightning-bolt
+    filters:
+      - or:
+          - throttle: 60s
+          - delta: 0.5
   - platform: sht3xd
     address: 0x44
     update_interval: 60s
