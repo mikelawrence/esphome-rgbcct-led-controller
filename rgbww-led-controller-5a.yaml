@@ -250,19 +250,21 @@ sensor:
     max_current: 10A
     adc_range: 0
     update_interval: 1s
-    reset_on_boot: false
     bus_voltage:
-      id: voltage_int
+      name: "Voltage Internal"
+      internal: true
       accuracy_decimals: 2
     current:
-      id: current_int
+      name: "Current Internal"
+      internal: true
       accuracy_decimals: 3
     power:
-      id: power_int
+      name: "Power Internal"
+      internal: true
       accuracy_decimals: 3
   - platform: copy
     name: "Voltage"
-    source_id: voltage_int
+    source_id: voltage_internal
     accuracy_decimals: 2
     unit_of_measurement: "V"
     icon: mdi:sine-wave
@@ -272,7 +274,7 @@ sensor:
           - delta: 0.5
   - platform: copy
     name: "Current"
-    source_id: current_int
+    source_id: current_internal
     accuracy_decimals: 3
     unit_of_measurement: "A"
     icon: mdi:current-ac
@@ -282,7 +284,7 @@ sensor:
           - delta: 0.5
   - platform: copy
     name: "Power"
-    source_id: power_int
+    source_id: power_internal
     accuracy_decimals: 3
     unit_of_measurement: "W"
     icon: mdi:flash
