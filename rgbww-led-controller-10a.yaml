@@ -23,11 +23,11 @@ external_components:
   - source:
       type: git
       url: https://github.com/mikelawrence/esphome-components
-    components: [rgbww_power_limited, esp32_rmt_pwm]
+    components: [ rgbww_power_limited, esp32_rmt_pwm ]
 
 # API is a requirement of the dashboard import
 # Grab a key from https://esphome.io/components/api.html
-api:
+api: 
 #   encryption:
 #     key:
 
@@ -39,7 +39,7 @@ ota:
   - platform: esphome
     # password: !secret ota_password
 
-# Web Server
+    # Web Server
 web_server:
   port: 80
   version: 3
@@ -47,8 +47,8 @@ web_server:
   #   username: !secret web_server_username
   #   password: !secret web_server_password
 
-# WiFi is required
-wifi:
+  # WiFi is required
+wifi: 
 #   ssid: !secret wifi_ssid
 #   password: !secret wifi_password
 #   use_address: xxx.xxx.xxx.xxx
@@ -133,8 +133,8 @@ light:
     color_interlock: false
     restore_mode: RESTORE_DEFAULT_OFF
     gamma_correct: 1.0
-    # Power limiting
-    max_power: 0.6 # Cap at 60% of total system power
+    # Power limiting, Cap at 60% of total system power for this light
+    max_power: 0.6
 
 number:
   - platform: template
@@ -197,11 +197,12 @@ output:
     pin: GPIO20
     id: fan_pwm
     rmt_symbols: 48
-    frequency: 25000Hz # Standard for 4-pin PWM fans
+    # Standard for 4-pin PWM fans
+    frequency: 25000Hz
   - platform: ledc
     pin: GPIO4
     id: output_red
-    frequency: 300Hz # More than approximately 1500Hz will not work well
+    frequency: 300Hz
     phase_angle: 0°
   - platform: ledc
     pin: GPIO10
@@ -245,8 +246,7 @@ sensor:
     model: INA238
     shunt_resistance: 0.008ohm
     max_current: 10A
-    adc_range: 0 # ±163.84 mV
-    # adc_range: 1  # ±40.96 mV
+    adc_range: 0
     update_interval: 1s
     reset_on_boot: false
     bus_voltage:
