@@ -251,20 +251,23 @@ sensor:
     adc_range: 0
     update_interval: 1s
     bus_voltage:
-      name: "Voltage Internal"
+      name: "Voltage Int"
+      id: voltage_int
       internal: true
       accuracy_decimals: 2
     current:
-      name: "Current Internal"
+      name: "Current Int"
+      id: current_int
       internal: true
       accuracy_decimals: 3
     power:
-      name: "Power Internal"
+      name: "Power Int"
+      id: power_int
       internal: true
       accuracy_decimals: 3
   - platform: copy
     name: "Voltage"
-    source_id: voltage_internal
+    source_id: voltage_int
     accuracy_decimals: 2
     unit_of_measurement: "V"
     icon: mdi:sine-wave
@@ -274,7 +277,7 @@ sensor:
           - delta: 0.5
   - platform: copy
     name: "Current"
-    source_id: current_internal
+    source_id: current_int
     accuracy_decimals: 3
     unit_of_measurement: "A"
     icon: mdi:current-ac
@@ -284,7 +287,7 @@ sensor:
           - delta: 0.5
   - platform: copy
     name: "Power"
-    source_id: power_internal
+    source_id: power_int
     accuracy_decimals: 3
     unit_of_measurement: "W"
     icon: mdi:flash
@@ -294,7 +297,7 @@ sensor:
           - delta: 0.5
   - platform: total_daily_energy
     name: "Energy"
-    power_id: power_internal
+    power_id: power_int
     unit_of_measurement: Wh
     accuracy_decimals: 3
     icon: mdi:lightning-bolt
