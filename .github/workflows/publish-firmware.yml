@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows:
       - Create Release
-    types: [completed]
+    types: [ completed ]
   workflow_dispatch:
 
 permissions:
@@ -21,10 +21,11 @@ jobs:
     steps:
       - name: Get Latest Release
         id: get-latest-release
-        uses: cardinalby/git-get-release-action@1.2.5
+        uses: joutvhu/get-release@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          debug: true
           latest: true
           prerelease: true
 
