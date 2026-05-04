@@ -40,7 +40,7 @@ This LED controller supports the following:
   <a href="pcb/README.md"><img src="pcb/meta/esphome-rgbcct-led-controller-top-view.png" width="60%"></a>
 </p>
 
-View the [README](pcb-expansion/README.md) for more information about this PCB.
+View the [README](pcb/README.md) for more information about this PCB.
 
 ## Temperature Expansion PCBs
 
