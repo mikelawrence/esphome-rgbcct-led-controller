@@ -1,4 +1,4 @@
-![Sensor](https://raw.githubusercontent.com/mikelawrence/esphome-rgbcct-led-controller/main/pcb-expansion/meta/esphome-rgbcct-led-controller-with-expansion.png)
+![Sensor](https://raw.githubusercontent.com/mikelawrence/esphome-rgbcct-led-controller/main/pcb/meta/esphome-rgbcct-led-controller-top-view.png)
 
 # Web Installation
 
