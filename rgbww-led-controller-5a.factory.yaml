@@ -30,4 +30,5 @@ esp32_improv:
 improv_serial:
 
 logger:
+# This is required for the improv_serial component
   baud_rate: 115200
