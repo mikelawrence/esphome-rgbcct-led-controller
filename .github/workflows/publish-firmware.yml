@@ -66,7 +66,7 @@ jobs:
   upload-firmware:
     name: Upload Firmware
     needs: build-firmware
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2026.4.0
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2026.4.1
     with:
       version: ${{ needs.build-firmware.outputs.version }}
 
