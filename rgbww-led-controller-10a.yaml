@@ -20,10 +20,8 @@ esp32:
     type: esp-idf
 
 external_components:
-  - source:
-      type: git
-      url: https://github.com/mikelawrence/esphome-components
-    components: [rgbww_power_limited, esp32_rmt_pwm]
+  - source: github://mikelawrence/esphome-component-esp32-rmt-pwm
+  - source: github://mikelawrence/esphome-component-rgbww-power-limited
 
 # API is a requirement of the dashboard import
 # Grab a key from https://esphome.io/components/api.html
@@ -38,7 +36,7 @@ api:
 ota:
   # - platform: web_server
   - platform: esphome
-    # password: !secret ota_password
+  # password: !secret ota_password
 
 # Web Server
 web_server:
