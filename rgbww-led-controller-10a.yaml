@@ -20,8 +20,8 @@ esp32:
     type: esp-idf
 
 external_components:
-  - source: github://mikelawrence/esphome-component-rgbww-power-limited
   - source: github://mikelawrence/esphome-component-esp32-rmt-pwm
+  - source: github://mikelawrence/esphome-component-rgbww-power-limited
 
 # API is a requirement of the dashboard import
 # Grab a key from https://esphome.io/components/api.html
