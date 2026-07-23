@@ -10,6 +10,10 @@ esphome:
 
 ota:
   - platform: http_request
+    id: ota_http_request
+    on_begin:
+      - ble.disable:
+      - logger.log: "OTA starting: BLE Disabled"
 
 update:
   - platform: http_request
@@ -23,6 +27,7 @@ dashboard_import:
   import_full_config: true
 
 wifi:
+  power_save_mode: none
 
 esp32_improv:
   authorizer: none
