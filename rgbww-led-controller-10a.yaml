@@ -36,7 +36,7 @@ api:
 ota:
   # - platform: web_server
   - platform: esphome
-    # password: !secret ota_password
+  # password: !secret ota_password
 
 # Web Server
 web_server:
