@@ -1,4 +1,5 @@
 substitutions:
+  # name must be unique across all factory builds in this project and 24 characters or less
   name: "rgbww-led-controller-5a"
   friendly_name: "RGBWW LED Controller 5 Amp"
 
@@ -6,7 +7,7 @@ esphome:
   name: ${name}
   friendly_name: ${friendly_name}
   min_version: 2026.3.3
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
   on_boot:
     priority: 600
     then:
@@ -26,7 +27,6 @@ external_components:
 # API is a requirement of the dashboard import
 # Grab a key from https://esphome.io/components/api.html
 api:
-
 #   encryption:
 #     key:
 
