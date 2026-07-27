@@ -12,7 +12,7 @@ dashboard_import:
 esphome:
   project:
     name: Mike Lawrence.${friendly_name}
-    # This will be replaced by the github workflows with the `release` version
+    # This will be replaced by github workflows with the `release` version
     version: dev
 
 web_server:
@@ -22,6 +22,10 @@ web_server:
     username: "sensor"
     password: "password"
     type: digest
+
+ota:
+  - platform: http_request
+    id: ota_http_request
 
 http_request:
 
