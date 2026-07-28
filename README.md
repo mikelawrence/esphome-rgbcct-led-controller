@@ -54,3 +54,7 @@ View the [Rev A README](pcb-expansion-rev-a/README.md) or [Rev B README](pcb-exp
 ## Configuration
 
 Click [here](https://mikelawrence.github.io/esphome-rgbcct-led-controller) to go to the installation and configuration page.
+
+## Web Server
+
+Th Web Server is enabled in the current configuration. The default username is `light` and password is `password`. Auth is enabled mainly because manual firmware updates are enabled in the Web Server.
