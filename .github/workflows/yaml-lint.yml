@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - "**.yaml"
-      - "**.yml"
 
 permissions:
   contents: write
@@ -19,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️ Check out configuration from GitHub
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       - name: 🚀 Run yamllint
         uses: frenck/action-yamllint@v1.5.0
         with:
-          strict: false
+          strict: true
