@@ -7,37 +7,91 @@ permissions:
   contents: write
 
 jobs:
-  get-release-info:
-    name: Get Release Info
+  calver:
+    name: Get CalVer
     runs-on: ubuntu-latest
     steps:
-      - name: Get Latest Release
-        id: get-latest-release
+      - name: Calculate CalVer version
+        id: calver
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          # CalVer scheme: YY.M.N
+          #   YY = year mod 100 (e.g. 2026 -> 26)
+          #   M  = month, no zero padding (e.g. April -> 4)
+          #   N  = sequential release of that month, starting at 1
+          year=$(date -u +%y)
+          month=$(date -u +%-m)
+          prefix="${year}.${month}."
+
+          # The newest 100 releases always include everything tagged in the
+          # current month, so one page is enough to find the highest sequence.
+          if ! releases=$(gh api "repos/${GH_REPO}/releases?per_page=100"); then
+            echo "::error::Failed to list releases"
+            exit 1
+          fi
+
+          # Highest existing tag (draft or published) matching the current YY.M.*
+          latest_seq=$(jq -r --arg prefix "${prefix}" \
+            '[.[] | select(.tag_name | startswith($prefix))
+              | .tag_name | ltrimstr($prefix) | tonumber?] | max // 0' \
+            <<< "${releases}")
+
+          if [[ "${latest_seq}" -eq 0 ]]; then
+            echo "::error::There is no "
+            exit 1
+          else
+            # If the existing release at the highest seq is still a draft, reuse it
+            # so subsequent pushes update the same draft. Otherwise start a new one.
+            is_draft=$(jq -r --arg tag "${prefix}${latest_seq}" \
+              '[.[] | select(.tag_name == $tag)] | first | .draft' <<< "${releases}")
+            if [[ "${is_draft}" == "true" ]]; then
+              seq=${latest_seq}
+            else
+              echo "::error::Latest release is not draft"
+              exit 1
+            fi
+          fi
+
+          version="${prefix}${seq}"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "Calculated CalVer version: ${version}"
+    outputs:
+      version: ${{ steps.calver.outputs.version }}
+
+  info:
+    name: Get Release Info
+    needs:
+      - calver
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Release Info
+        id: info
         uses: joutvhu/get-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          debug: true
-          latest: true
-          prerelease: true
+          tag_name: ${{ needs.calver.outputs.version }}
     outputs:
-      summary: ${{ steps.get-latest-release.outputs.body }}
-      url: ${{ steps.get-latest-release.outputs.html_url }}
-      version: ${{ steps.get-latest-release.outputs.tag_name }}
+      summary: ${{ steps.info.outputs.body }}
+      url: ${{ steps.info.outputs.html_url }}
+      version: ${{ steps.info.outputs.tag_name }}
 
   build-firmware:
     name: Build Firmware
     needs:
-      - get-release-info
+      - info
     uses: esphome/workflows/.github/workflows/build.yml@9f6577fd37b5cf773ab1b9be929714a0dcd15661  # 2026.7.0
     with:
       files: |
         rgbww-led-controller-5a.factory.yaml
         rgbww-led-controller-10a.factory.yaml
       esphome-version: latest
-      release-summary: ${{ needs.get-release-info.outputs.summary }}
-      release-url: ${{ needs.get-release-info.outputs.url }}
-      release-version: ${{ needs.get-release-info.outputs.version }}
+      release-summary: ${{ needs.info.outputs.summary }}
+      release-url: ${{ needs.info.outputs.url }}
+      release-version: ${{ needs.info.outputs.version }}
 
   upload-to-release:
     name: Upload to Release
