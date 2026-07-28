@@ -1,10 +1,10 @@
 name: Publish Firmware
+# This will grab the latest draft Release, build the firmware, upload files to Github draft Release
+# and promote the draft Release to Latest full Release
 
 on:
-  workflow_run:
-    workflows:
-      - Create Release
-    types: [completed]
+  # release:
+  #   types: [published]
   workflow_dispatch:
 
 permissions:
@@ -32,8 +32,7 @@ jobs:
 
   build-firmware:
     name: Build Firmware
-    needs: get-release-info
-    uses: esphome/workflows/.github/workflows/build.yml@9f6577fd37b5cf773ab1b9be929714a0dcd15661 # 2026.7.0
+    uses: esphome/workflows/.github/workflows/build.yml@9f6577fd37b5cf773ab1b9be929714a0dcd15661  # 2026.7.0
     with:
       files: |
         rgbww-led-controller-5a.factory.yaml
@@ -45,7 +44,7 @@ jobs:
 
   upload-to-release:
     name: Upload to Release
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@9f6577fd37b5cf773ab1b9be929714a0dcd15661 # 2026.7.0
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@9f6577fd37b5cf773ab1b9be929714a0dcd15661  # 2026.7.0
     needs:
       - build-firmware
     with:
