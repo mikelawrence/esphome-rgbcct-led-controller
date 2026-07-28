@@ -48,11 +48,12 @@ jobs:
     needs:
       - build-firmware
     with:
-      version: ${{ needs.get-release-info.outputs.version }}
+      version: ${{ needs.build-firmware.outputs.version }}
 
   promote-pre-release:
     name: Promote Pre-Release to Release
     needs:
+      - build-firmware
       - upload-to-release
     runs-on: ubuntu-latest
     permissions:
@@ -62,7 +63,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          tag: ${{ needs.get-release-info.outputs.version }}
+          tag: ${{ needs.build-firmware.outputs.version }}
           prerelease: false
           makeLatest: true
           generateReleaseNotes: false
