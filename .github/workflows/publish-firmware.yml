@@ -1,13 +1,35 @@
 name: Publish Firmware
+# This will grab the latest draft Release, build the firmware, upload files to Github draft Release
+# and promote the draft Release to Latest full Release
 
 on:
-  release:
-    types: [published]
+  # release:
+  #   types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
+  get-release-info:
+    name: Get Release Info
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Latest Release
+        id: get-latest-release
+        uses: joutvhu/get-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          debug: true
+          latest: true
+          prerelease: true
+
+    outputs:
+      summary: ${{ steps.get-latest-release.outputs.body }}
+      url: ${{ steps.get-latest-release.outputs.html_url }}
+      version: ${{ steps.get-latest-release.outputs.tag_name }}
+
   build-firmware:
     name: Build Firmware
     uses: esphome/workflows/.github/workflows/build.yml@025a1e6255610c498ed590403b7e510b69e474df  # 2026.4.1
@@ -16,25 +38,9 @@ jobs:
         rgbww-led-controller-5a.factory.yaml
         rgbww-led-controller-10a.factory.yaml
       esphome-version: latest
-      release-summary: ${{ github.event.release.body }}
-      release-url: ${{ github.event.release.html_url }}
-      release-version: ${{ github.event.release.tag_name }}
-
-  rewind-pre-release:
-    name: Rewind Draft on Build Firmware Failure
-    needs: build-firmware
-    runs-on: ubuntu-latest
-    if: failure()
-    permissions:
-      contents: write
-
-    steps:
-      - uses: ClementTsang/delete-tag-and-release@v0.4.0
-        with:
-          delete_release: true
-          tag_name: ${{ needs.build-firmware.outputs.version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      release-summary: ${{ needs.get-release-info.outputs.summary }}
+      release-url: ${{ needs.get-release-info.outputs.url }}
+      release-version: ${{ needs.get-release-info.outputs.version }}
 
   upload-to-release:
     name: Upload to Release
@@ -42,7 +48,7 @@ jobs:
     needs:
       - build-firmware
     with:
-      version: ${{ github.event.release.tag_name }}
+      version: ${{ needs.get-release-info.outputs.version }}
 
   promote-pre-release:
     name: Promote Pre-Release to Release
@@ -56,7 +62,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          tag: ${{ needs.build-firmware.outputs.version }}
+          tag: ${{ needs.get-release-info.outputs.version }}
           prerelease: false
           makeLatest: true
           generateReleaseNotes: false
