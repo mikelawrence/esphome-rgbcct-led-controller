@@ -104,13 +104,21 @@ jobs:
 
           # Export for later steps in the same job.
           echo "LATEST_DRAFT_TAG=$latest_tag" >> "$GITHUB_ENV"
-          echo "RELEASE_BODY=$release_body" >> "$GITHUB_ENV"
           echo "RELEASE_URL=$release_url" >> "$GITHUB_ENV"
+          {
+            echo "RELEASE_BODY<<EOF"
+            echo "$release_body"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
 
           # Export as step outputs.
           echo "tag=$latest_tag" >> "$GITHUB_OUTPUT"
-          echo "release_body=$release_body" >> "$GITHUB_OUTPUT"
           echo "release_url=$release_url" >> "$GITHUB_OUTPUT"
+          {
+            echo "release_body<<EOF"
+            echo "$release_body"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
           echo "Latest draft tag: $latest_tag"
           echo "Release URL: $release_url"
