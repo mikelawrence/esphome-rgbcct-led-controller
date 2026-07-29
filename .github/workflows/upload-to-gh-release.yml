@@ -55,12 +55,12 @@ jobs:
           done
           popd
           pushd output
-          cp rgbcct-led-controller-5amp.manifest.json rgbww-led-controller-5a.manifest.json
-          cp rgbcct-led-controller-10amp.manifest.json rgbww-led-controller-10a.manifest.json
-          # Also update version in the copied rgbww manifest files
-          for f in "rgbww-led-controller-"*.manifest.json; do
-            jq '.version = "20${{ inputs.version }}"' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
-          done
+          f="rgbww-led-controller-5a.manifest.json"
+          cp rgbcct-led-controller-5amp.manifest.json $f
+          jq '.name = "RGBWW Led Controller 5 Amp", .version = "20${{ inputs.version }}"' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+          f="rgbww-led-controller-10a.manifest.json"
+          cp rgbcct-led-controller-10amp.manifest.json $f
+          jq '.name = "RGBWW Led Controller 10 Amp", .version = "20${{ inputs.version }}"' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
           popd
 
       - name: Upload files to release
