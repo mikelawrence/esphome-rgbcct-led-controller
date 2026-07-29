@@ -53,11 +53,12 @@ jobs:
             popd
             popd
           done
-          tree
-          cp "./output/rgbcct-led-controller-5amp.manifest.json" "./output/rgbww-led-controller-5a.manifest.json"
-          cp "./output/rgbcct-led-controller-10amp.manifest.json" "./output/rgbww-led-controller-10a.manifest.json"
+          popd
+          pushd output
+          cp rgbcct-led-controller-5amp.manifest.json rgbww-led-controller-5a.manifest.json
+          cp rgbcct-led-controller-10amp.manifest.json rgbww-led-controller-10a.manifest.json
           # Also update version in the copied rgbww manifest files
-          for f in "./output/rgbww-led-controller-"*.manifest.json; do
+          for f in "rgbww-led-controller-"*.manifest.json; do
             jq '.version = "20${{ inputs.version }}"' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
           done
           popd
