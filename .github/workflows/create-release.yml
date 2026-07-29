@@ -153,7 +153,7 @@ jobs:
   promote-draft:
     name: Promote Draft to Release
     needs:
-      - build-firmware
+      - calver
       - upload-to-release
     runs-on: ubuntu-latest
     permissions:
@@ -163,8 +163,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          tag: ${{ needs.build-firmware.outputs.version }}
-          prerelease: false
+          tag: ${{ needs.calver.outputs.version }}
+          body: ${{ needs.calver.outputs.summary }}
           makeLatest: true
-          generateReleaseNotes: false
           token: ${{ secrets.GITHUB_TOKEN }}
