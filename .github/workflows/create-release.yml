@@ -14,7 +14,8 @@ jobs:
       - name: Find latest draft CalVer release
         id: calver
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         shell: bash
         run: |
           # Fail fast:
