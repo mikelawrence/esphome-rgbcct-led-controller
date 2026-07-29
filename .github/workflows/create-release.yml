@@ -1,10 +1,6 @@
 name: Publish Firmware
-# This will grab the latest draft Release, build the firmware, upload files to Github draft Release
-# and promote the draft Release to Latest full Release
 
 on:
-  # release:
-  #   types: [published]
   workflow_dispatch:
 
 permissions:
@@ -14,8 +10,6 @@ jobs:
   calver:
     name: Get Latest Draft Release Tag
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Find latest draft CalVer release
         id: calver
@@ -99,17 +93,17 @@ jobs:
       - calver
     runs-on: ubuntu-latest
     steps:
-      - name: Get Latest Release
-        id: get-latest-release
+      - name: Get Release Info
+        id: info
         uses: joutvhu/get-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ needs.calver.outputs.version }}
     outputs:
-      summary: ${{ steps.get-latest-release.outputs.body }}
-      url: ${{ steps.get-latest-release.outputs.html_url }}
-      version: ${{ steps.get-latest-release.outputs.tag_name }}
+      summary: ${{ steps.info.outputs.body }}
+      url: ${{ steps.info.outputs.html_url }}
+      version: ${{ steps.info.outputs.tag_name }}
 
   build-firmware:
     name: Build Firmware
@@ -127,15 +121,16 @@ jobs:
 
   upload-to-release:
     name: Upload to Release
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@025a1e6255610c498ed590403b7e510b69e474df  # 2026.4.1
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@9f6577fd37b5cf773ab1b9be929714a0dcd15661  # 2026.7.0
     needs:
       - build-firmware
     with:
-      version: ${{ needs.get-release-info.outputs.version }}
+      version: ${{ needs.build-firmware.outputs.version }}
 
-  promote-pre-release:
-    name: Promote Pre-Release to Release
+  promote-draft:
+    name: Promote Draft to Release
     needs:
+      - build-firmware
       - upload-to-release
     runs-on: ubuntu-latest
     permissions:
@@ -145,7 +140,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          tag: ${{ needs.get-release-info.outputs.version }}
+          tag: ${{ needs.build-firmware.outputs.version }}
           prerelease: false
           makeLatest: true
           generateReleaseNotes: false

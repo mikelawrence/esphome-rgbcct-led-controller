@@ -1,11 +1,8 @@
 name: Publish Pages
 
 on:
-  workflow_run:
-    workflows:
-      - Publish Firmware
-    types:
-      - completed
+  release:
+    types: [published]
 
   workflow_dispatch:
 
@@ -13,7 +10,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout source code
         uses: actions/checkout@v7
