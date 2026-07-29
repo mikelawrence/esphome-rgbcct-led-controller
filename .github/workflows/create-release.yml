@@ -104,26 +104,17 @@ jobs:
 
           # Export for later steps in the same job.
           echo "LATEST_DRAFT_TAG=$latest_tag" >> "$GITHUB_ENV"
+          echo "RELEASE_BODY=$release_body" >> "$GITHUB_ENV"
           echo "RELEASE_URL=$release_url" >> "$GITHUB_ENV"
-
-          {
-            echo "RELEASE_BODY<<EOF"
-            echo "$release_body"
-            echo "EOF"
-          } >> "$GITHUB_ENV"
 
           # Export as step outputs.
           echo "tag=$latest_tag" >> "$GITHUB_OUTPUT"
+          echo "release_body=$release_body" >> "$GITHUB_OUTPUT"
           echo "release_url=$release_url" >> "$GITHUB_OUTPUT"
 
-          {
-            echo "release_body<<EOF"
-            echo "$release_body"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
-
-          echo "Latest draft CalVer tag: $latest_tag"
+          echo "Latest draft tag: $latest_tag"
           echo "Release URL: $release_url"
+          echo "Release Body: $release_body"
     outputs:
       summary: ${{ steps.calver.outputs.release_body }}
       url: ${{ steps.calver.outputs.release_url }}
@@ -139,9 +130,9 @@ jobs:
         rgbww-led-controller-5a.factory.yaml
         rgbww-led-controller-10a.factory.yaml
       esphome-version: latest
-      release-summary: ${{ needs.draft-info.outputs.summary }}
-      release-url: ${{ needs.draft-info.outputs.url }}
-      release-version: ${{ needs.draft-info.outputs.version }}
+      release-summary: ${{ needs.calver.outputs.summary }}
+      release-url: ${{ needs.calver.outputs.url }}
+      release-version: ${{ needs.calver.outputs.version }}
 
   upload-to-release:
     name: Upload to Release
