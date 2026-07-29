@@ -458,7 +458,7 @@ sensor:
     id: wifi_signal_db
     update_interval: 60s
     entity_category: "diagnostic"
-    
+
 text_sensor:
   - platform: debug
     reset_reason:
