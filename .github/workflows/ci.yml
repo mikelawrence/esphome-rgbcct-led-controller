@@ -21,8 +21,8 @@ jobs:
       matrix:
         #### Modify below here to match your project ####
         file:
-          - rgbww-led-controller-5a
-          - rgbww-led-controller-10a
+          - rgbcct-led-controller-5amp
+          - rgbcct-led-controller-10amp
         #### Modify above here to match your project ####
 
         esphome-version:
