@@ -7,12 +7,12 @@ permissions:
   contents: write
 
 jobs:
-  calver:
-    name: Get Latest Draft Release Tag
+  info:
+    name: Draft CalVer Release Info
     runs-on: ubuntu-latest
     steps:
-      - name: Find latest draft CalVer release
-        id: calver
+      - name: Get Tag and Info
+        id: tag-info
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -124,23 +124,23 @@ jobs:
           echo "Release URL: $release_url"
           echo "Release Body: $release_body"
     outputs:
-      summary: ${{ steps.calver.outputs.release_body }}
-      url: ${{ steps.calver.outputs.release_url }}
-      version: ${{ steps.calver.outputs.tag }}
+      summary: ${{ steps.tag-info.outputs.release_body }}
+      url: ${{ steps.tag-info.outputs.release_url }}
+      version: ${{ steps.tag-info.outputs.tag }}
 
   build-firmware:
     name: Build Firmware
     needs:
-      - calver
+      - info
     uses: esphome/workflows/.github/workflows/build.yml@9f6577fd37b5cf773ab1b9be929714a0dcd15661  # 2026.7.0
     with:
       files: |
         rgbcct-led-controller-5amp.factory.yaml
         rgbcct-led-controller-10amp.factory.yaml
       esphome-version: latest
-      release-summary: ${{ needs.calver.outputs.summary }}
-      release-url: https://github.com/mikelawrence/esphome-rgbcct-led-controller/releases/tag/${{ needs.calver.outputs.version }}
-      release-version: ${{ needs.calver.outputs.version }}
+      release-summary: ${{ needs.info.outputs.summary }}
+      release-url: https://github.com/${{ github.repository }}/releases/tag/${{ needs.info.outputs.version }}
+      release-version: ${{ needs.info.outputs.version }}
 
   upload-to-release:
     name: Upload to Release
@@ -153,7 +153,7 @@ jobs:
   promote-draft:
     name: Promote Draft to Release
     needs:
-      - calver
+      - info
       - upload-to-release
     runs-on: ubuntu-latest
     permissions:
@@ -163,7 +163,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          tag: ${{ needs.calver.outputs.version }}
-          body: ${{ needs.calver.outputs.summary }}
+          tag: ${{ needs.info.outputs.version }}
+          body: ${{ needs.info.outputs.summary }}
           makeLatest: true
           token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,5 @@
 name: Upload firmware to GitHub Release
+# Based on file https://github.com/esphome/workflows/blob/main/.github/workflows/upload-to-gh-release.yml
 
 on:
   workflow_call:
@@ -54,14 +55,23 @@ jobs:
             popd
           done
           popd
+
+      - name: Create older manifest files
+        run: |-
+          shopt -s nullglob
           pushd output
-          cp rgbcct-led-controller-5amp.manifest.json rgbww-led-controller-5a.manifest.json
-          cp rgbcct-led-controller-10amp.manifest.json rgbww-led-controller-10a.manifest.json
-          # Also update version in the copied rgbww manifest files
-          for f in "rgbww-led-controller-"*.manifest.json; do
-            jq '.version = "20${{ inputs.version }}"' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+          version="$(date +%C)${{ inputs.version }}"
+          echo 'Creating new mainfest.json files...'
+          echo 'As some point this should be removed...'
+          echo 'Older manifests need a version with a four digit year: "${{ inputs.version }}" -> "$version"'
+          for f in *.manifest.json; do
+            fnew=$(sed 's/rgbcct/rgbww/g; s/amp.manifest/a.manifest/g' <<< "$f")
+            cp $f $fnew
+            jq '.version = "$version"' "$fnew" > "$fnew.tmp" && mv "$fnew.tmp" "$fnew"
+            echo "$fnew"
           done
           popd
+
       - name: Upload files to release
         env:
           GH_TOKEN: ${{ github.token }}
