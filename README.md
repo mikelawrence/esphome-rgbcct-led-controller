@@ -53,7 +53,7 @@ View the [Rev A README](pcb-expansion-rev-a/README.md) or [Rev B README](pcb-exp
 
 ## Configuration
 
-Click [here](https://mikelawrence.github.io/esphome-rgbcct-led-controller) to go to the installation and configuration page.
+[RGBCCT LED Controller GH Pages](https://mikelawrence.github.io/esphome-rgbcct-led-controller/) provides installation and Home Assistant configuration support.
 
 ## Web Server
 
