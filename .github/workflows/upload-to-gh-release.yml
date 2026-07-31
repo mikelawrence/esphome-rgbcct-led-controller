@@ -38,6 +38,7 @@ jobs:
 
       - name: Copy files to output
         run: |-
+          set -euo pipefail
           shopt -s nullglob
           mkdir output
           version="${{ inputs.version }}"
@@ -58,16 +59,20 @@ jobs:
 
       - name: Create older manifest files
         run: |-
+          set -euo pipefail
           shopt -s nullglob
           pushd output
           version="$(date +%C)${{ inputs.version }}"
-          echo 'Creating new mainfest.json files...'
-          echo 'As some point this should be removed...'
-          echo 'Older manifests need a version with a four digit year: "${{ inputs.version }}" -> "$version"'
+          echo "Creating new manifest.json files..."
+          echo "At some point this should be removed..."
+          echo "Older manifests need a version with a four-digit year: ${{ inputs.version }} -> $version"
           for f in *.manifest.json; do
-            fnew=$(sed 's/rgbcct/rgbww/g; s/amp.manifest/a.manifest/g' <<< "$f")
-            cp $f $fnew
-            jq '.version = "$version"' "$fnew" > "$fnew.tmp" && mv "$fnew.tmp" "$fnew"
+            # Compute new filename from original
+            fnew=$(sed 's/rgbcct/rgbww/g; s/amp\.manifest/a.manifest/g' <<< "$f")
+            # Copy original manifest to new name
+            cp "$f" "$fnew"
+            # Update .version field in the new manifest
+            jq --arg v "$version" '.version = $v' "$fnew" > "$fnew.tmp" && mv "$fnew.tmp" "$fnew"
             echo "$fnew"
           done
           popd
@@ -79,6 +84,7 @@ jobs:
           VERSION: ${{ inputs.version }}
           DRAFT: ${{ inputs.draft }}
         run: |-
+          set -euo pipefail
           shopt -s nullglob
           files=(output/*)
           if [ ${#files[@]} -eq 0 ]; then
